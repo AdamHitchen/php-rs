@@ -11,7 +11,7 @@ class Panic
     private static ?Option $panicCallback = null;
 
     /**
-     * @param callable $callback
+     * @param callable(string) $callback
      * @return void
      */
     public static function registerPanicCallback(callable $callback): void
@@ -24,6 +24,11 @@ class Panic
         self::$panicCallback = Option::None();
     }
 
+    /**
+     * @internal
+     * @param PanicHandlerInterface $handler
+     * @return void
+     */
     public static function registerPanicHandler(PanicHandlerInterface $handler): void
     {
         self::$instance = $handler;
@@ -42,7 +47,12 @@ class Panic
             self::$instance = new PanicHandler();
         }
 
-        self::$instance->panic($panicInfo, $callback->unwrap_or(fn($val) => $val));
+        ob_start();
+        debug_print_backtrace();
+        $trace = ob_get_clean();
+        $output = sprintf("%s\n%s", (string) $panicInfo, $trace);
+
+        self::$instance->panic($output, $callback->unwrap_or(fn() => 0));
     }
 
     /**

@@ -2,7 +2,7 @@
     "name": "adamhitchen/php-rs",
     "description": "Rust's Option, Result and Iterator implemented in php.",
     "type": "library",
-    "license": "GPLv3",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "PhpRs\\": "src/"

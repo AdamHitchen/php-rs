@@ -8,6 +8,7 @@ use PhpRs\Option;
 use PhpRs\Option\None;
 use PhpRs\Option\Some;
 use PhpRs\PanicHandler\Panic;
+use PhpRs\PanicHandler\PanicHandler;
 use PHPUnit\Framework\TestCase;
 
 class OptionTest extends TestCase
@@ -68,7 +69,7 @@ class OptionTest extends TestCase
         try {
             Option::None()->expect("This is an error");
         } catch (\Exception $e) {
-            $this->assertEquals("This is an error", $e->getMessage());
+            $this->assertStringStartsWith("This is an error", $e->getMessage());
         }
     }
 

@@ -27,7 +27,6 @@ class Chain extends Iterator
 
     public function valid(): bool
     {
-        //TODO: think of a nice way to do this without using null and without overwriting all Iterator methods
         if ($this->done) {
             return false;
         }

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace PhpRs\PanicHandler;
 
-use PhpRs\Option\None;
-
 class PanicHandler implements PanicHandlerInterface
 {
     /**
@@ -15,13 +13,16 @@ class PanicHandler implements PanicHandlerInterface
      */
     public function panic(string|\Stringable $panicInfo, callable $callback): never
     {
+        $info = (string) $panicInfo;
+
         // we don't want someone to escape the exit by throwing an exception ;)
         try {
-            $callback((string) $panicInfo);
+            $callback($info);
         } catch (\Throwable) {
 
         }
 
-        exit;
+        trigger_error($info, E_USER_ERROR);
+        exit(1);
     }
 }

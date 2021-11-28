@@ -14,7 +14,6 @@ use PhpRs\Iterator\OrderBy;
 use PhpRs\Iterator\Repeat;
 use PhpRs\Iterator\Skip;
 use PhpRs\Iterator\SkipWhile;
-use PhpRs\Option\Some;
 
 /**
  * @template T
@@ -225,6 +224,7 @@ class Iterator implements Iter
     /**
      * @template U
      * @param callable(T): U $callback
+     * @param OrderBy $orderBy
      * @return Option<T>
      */
     private function getByKeyImpl(callable $callback, OrderBy $orderBy): Option
