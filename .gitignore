@@ -1,0 +1,7 @@
+vendor/
+var/
+.phpdoc/
+logs/
+html-coverage/
+.idea/
+docs/

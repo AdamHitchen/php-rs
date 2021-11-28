@@ -1,0 +1,28 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "logs": {
+        "text": "/mnt/logs/infection.log"
+    },
+    "mutators": {
+        "@default": true,
+        "MethodCallRemoval": {
+            "ignore": [
+                "PhpRs\\**::next",
+                "PhpRs\\Iterator::find",
+                "PhpRs\\Iterator::collect",
+                "PhpRs\\Iterator::collectAssoc"
+            ]
+        },
+        "FunctionCallRemoval": {
+            "ignore": [
+                "PhpRs\\PanicHandler\\PanicHandler**"
+            ]
+        }
+    },
+    "timeout": 1
+}

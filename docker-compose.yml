@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  php:
+    build: docker/php
+    volumes:
+     - ./:/mnt
+     - ./logs:/var/log
+    environment:
+      XDEBUG_MODE: "debug,coverage"
