@@ -16,7 +16,6 @@ class Some extends Option
 {
     /** @var T */
     private mixed $inner;
-    private int $position = 0;
 
     /**
      * @psalm-param T $inner
